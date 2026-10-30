@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>和食處 - 暗色日式點餐</title>
+  <style>
+    body { background-color: #121212; color: #f5f5f5; font-family: "Noto Sans TC", sans-serif; margin: 0; padding: 20px; }
+    .container { max-width: 600px; margin: auto; border: 1px solid #d4b170; padding: 20px; background-color: #1a1a1a; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+    h1 { color: #e60012; text-align: center; border-bottom: 2px solid #d4b170; padding-bottom: 10px; font-weight: 700; }
+    .btn { background-color: #e60012; color: #fff; border: none; padding: 12px 20px; width: 100%; font-size: 16px; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+    .btn:hover { background-color: #b3000e; box-shadow: 0 0 10px #e60012; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>和風點餐系統</h1>
+    <div id="menu">載入菜單中...</div>
+    <button class="btn" onclick="submitOrder()">確認送出訂單</button>
+  </div>
+  <script>
+    const API_URL = "YOUR_CLOUD_FUNCTION_URL"; // 請替換成部署後的 Cloud Function 網址
+    async function submitOrder() {
+      await fetch(`${API_URL}/submitOrder`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ item: "特選刺身定食", user: "測試顧客" })
+      });
+      alert('點餐成功！已回寫試算表並發送 LINE & Gmail 通知。');
+    }
+  </script>
+</body>
+</html>
