@@ -1,6 +1,21 @@
 {
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default"
+    }
+  ],
   "hosting": {
     "public": "public",
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": {
+          "functionId": "api",
+          "region": "asia-east1"
+        }
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
